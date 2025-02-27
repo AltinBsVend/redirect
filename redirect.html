@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+</head>
+<body>
+  <script>
+    // Parse the ?passID= from the current URL
+    const params = new URLSearchParams(window.location.search);
+    const passID = params.get("passID");
+
+    // Build your actual script URL (requires sign-in)
+    // Example: https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec
+    const scriptBaseUrl = "https://script.google.com/macros/s/AKfycbySaSKCaZ1Lsjofd5RxMoDMbXypnXyTjJIGbikJIamGC0vKzkQcN1SYNcJkj6TAklAkJg/exec";
+
+    // If we have a passID, append it; otherwise, redirect without it
+    const targetUrl = passID 
+      ? `${scriptBaseUrl}?passID=${encodeURIComponent(passID)}` 
+      : scriptBaseUrl;
+
+    // Perform the redirect
+    window.location.replace(targetUrl);
+  </script>
+
+  <noscript>
+    <p>This page requires JavaScript to redirect.</p>
+  </noscript>
+</body>
+</html>
